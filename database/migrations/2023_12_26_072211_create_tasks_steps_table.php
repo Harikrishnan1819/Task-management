@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('step_id');
             $table->timestamps();
 
-
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->foreign('step_id')->references('id')->on('steps')->onDelete('cascade');
         });

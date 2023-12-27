@@ -10,15 +10,14 @@
 
         <!-- Sidebar -->
         @include('user.nav')
-                <!-- End of Topbar -->
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
+        <!-- Begin Page Content -->
+        @include('user.content')
+        <!-- End of Main Content -->
 
-            <!-- End of Main Content -->
-            @include('user.content')
-
-            <!-- Footer -->
-           @include('user.footer')
+        <!-- Footer -->
+        @include('user.footer')
 </body>
 
 </html>

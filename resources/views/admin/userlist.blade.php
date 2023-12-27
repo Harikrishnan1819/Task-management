@@ -27,7 +27,6 @@
                     <th>Users</th>
                     <th>Tittle</th>
                     <th>Status</th>
-                   
                 </tr>
 
                 @foreach ($users as $user)
@@ -52,12 +51,7 @@
                         </td>
                     </tr>
                 @endforeach
-
-
             </table>
-
-            
-
         </div>
         <!-- Footer -->
         @include('admin.footer')

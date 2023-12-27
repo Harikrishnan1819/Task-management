@@ -52,9 +52,9 @@ new class extends Component
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate>
+                        {{-- <x-dropdown-link :href="route('profile')" wire:navigate>
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown-link> --}}
 
                         <!-- Authentication -->
                         <button wire:click="logout" class="w-full text-start">

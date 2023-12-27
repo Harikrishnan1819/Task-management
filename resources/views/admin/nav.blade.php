@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/home')}}">
+        <a class="nav-link" href="{{ url('/home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -27,10 +27,9 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.userlist')}}">
+        <a class="nav-link" href="{{ route('admin.userlist') }}">
             <i class="fas fa-fw fa-users"></i>
             <strong>Users</strong></a>
-            
     </li>
 
 
@@ -41,8 +40,6 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
-
 
 </ul>
 <!-- End of Sidebar -->

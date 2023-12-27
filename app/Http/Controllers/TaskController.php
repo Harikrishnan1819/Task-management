@@ -8,65 +8,57 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-
-        $tasks = Task::latest()->paginate(5);
-            return view('user.taskindex',compact('tasks'))
-                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        // Fetches tasks from the "Task" model along with their related "steps." in step model
+        $tasks = Task::with('steps')->latest()->paginate(3);
+        return view('user.taskindex', compact('tasks'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('user.createform');
-
+        return view('user.createform'); //Return Form for create new task
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-
         $request->validate([
-            'task' => 'required',
+            'task' => 'required', // Validation
             'task_descripton' => 'required',
+            'due_date' => 'required',
         ]);
 
         $task = Task::create(
-           [ 'task' => $request->input('task'),
-            'task_descripton' => $request->input('task_descripton'),
-            'user_id'=> auth()->user()->id,]
+            ['task' => $request->input('task'),
+                'task_descripton' => $request->input('task_descripton'), // Create new Task in the Database
+                'due_date' => $request->input('due_date'),
+                'user_id' => auth()->user()->id]
         );
+
+        // Split the 'step_descripton' string from the request into an array of individual steps.
 
         $steps = explode(',', $request->input('step_descripton'));
         $stepIds = [];
 
+        // Retrieve an existing Step or create a new one if it doesn't exist.
         foreach ($steps as $step) {
             $stepModel = Step::firstOrCreate(['step_descripton' => trim($step)]);
             $stepIds[] = $stepModel->id;
         }
 
-        // Attach steps to the task
+        // The IDs of the steps are attached to the newly created task
         $task->steps()->attach($stepIds);
 
-
-            return redirect()->route('task.index')->with('success', 'Task created successfully.');
-
+        return redirect()->route('task.index')->with('success', 'Task created successfully.');
 
     }
 
     public function updateStatus(Request $request)
     {
-        $stepIds = $request->input('step_ids', []);
-
+        $stepIds = $request->input('step_ids', []); // Update the 'status' column in the 'steps' table
         Step::whereIn('id', $stepIds)->update(['status' => '1']);
 
         return redirect()->back()->with('success', 'Status updated successfully');
@@ -74,15 +66,16 @@ class TaskController extends Controller
 
     public function Edit(Task $task)
     {
-        return view('user.edit',compact('task'));
+        return view('user.edit', compact('task')); // Return Edit Form
     }
 
     public function update(Request $request, Task $task)
     {
         $request->validate([
             'task' => 'required',
-            'task_descripton' => 'required',
+            'task_descripton' => 'required', // Validation
             'step_descripton' => 'required',
+            'due_date' => 'required',
         ]);
 
         $task->update($request->only(['task', 'task_descripton']));
@@ -90,17 +83,14 @@ class TaskController extends Controller
         $steps = explode(',', $request->input('step_descripton'));
         $stepIds = [];
 
+        // Attach the step to the task
+
         foreach ($steps as $step) {
-            // Find or create the step associated with the task
             $stepModel = Step::firstOrCreate(['step_descripton' => trim($step)]);
-
-            // Ensure the step is associated with the task
             $task->steps()->syncWithoutDetaching([$stepModel->id]);
-
             $stepIds[] = $stepModel->id;
         }
 
-        // Sync steps with the task
         $task->steps()->sync($stepIds);
 
         return redirect()->route('task.index')->with('success', 'Task updated successfully.');
@@ -112,6 +102,5 @@ class TaskController extends Controller
 
         return redirect()->route('task.index')->with('success', 'Task deleted successfully.');
     }
-
 
 }

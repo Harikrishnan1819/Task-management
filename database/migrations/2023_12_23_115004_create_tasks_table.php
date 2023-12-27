@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('task');
             $table->text('task_descripton');
+            $table->date('due_date');
             $table->timestamps();
         });
     }

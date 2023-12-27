@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/home')}}">
+        <a class="nav-link" href="{{ url('/home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -22,22 +22,14 @@
     <hr class="sidebar-divider">
 
 
-    <!-- Nav Item - Pages Collapse Menu -->
 
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="{{route('task.index')}}">
+        <a class="nav-link" href="{{ route('task.index') }}">
             <i class="fas fa-fw fa-list"></i>
             <strong>Task</strong></a>
     </li>
-
-    <!-- Nav Item - Tables -->
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Steps</span></a>
-    </li> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

@@ -10,15 +10,14 @@
 
         <!-- Sidebar -->
         @include('admin.nav')
-                <!-- End of Topbar -->
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
+        <!-- Begin Page Content -->
+        @include('admin.content')
+        <!-- End of Main Content -->
 
-            <!-- End of Main Content -->
-            @include('admin.content')
-
-            <!-- Footer -->
-           @include('admin.footer')
+        <!-- Footer -->
+        @include('admin.footer')
 </body>
 
 </html>

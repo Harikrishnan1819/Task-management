@@ -10,17 +10,17 @@
 
         <!-- Sidebar -->
         @include('user.nav')
-                <!-- End of Topbar -->
+        <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
+        <!-- Begin Page Content -->
 
-            <!-- End of Main Content -->
-          <div class="container">
+        <!-- End of Main Content -->
+        <div class="container">
 
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-info" href="{{route('task.index')}}">Back</a>
+                        <a class="btn btn-info" href="{{ route('task.index') }}">Back</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <form action="{{route('task.store')}}" class="card-body" method="POST">
+            <form action="{{ route('task.store') }}" class="card-body" method="POST">
                 @csrf
 
                 <div class="row">
@@ -49,7 +49,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 ">
                         <div class="form-group">
                             <strong>Task_Description:</strong>
-                            <input type="text" name="task_descripton" class="form-control" placeholder="Task_Description">
+                            <input type="text" name="task_descripton" class="form-control"
+                                placeholder="Task_Description">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -58,16 +59,24 @@
                             <textarea class="form-control" style="height:150px" name="step_descripton" placeholder="Steps"></textarea>
                         </div>
                     </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-2 ">
+                        <div class="form-group">
+                            <strong>Due_Date:</strong>
+                            <input type='date' name="due_date" class="form-control">
+                        </div>
+                    </div>
+
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button type="submit" class="btn btn-outline-success">Submit</button>
                     </div>
                 </div>
 
             </form>
-          </div>
-          </div>
-            <!-- Footer -->
-           @include('user.footer')
+        </div>
+    </div>
+    <!-- Footer -->
+    @include('user.footer')
 </body>
 
 </html>
