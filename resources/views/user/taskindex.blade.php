@@ -42,7 +42,7 @@
                         <td>{{ ++$i }}</td>
                         <td>{{ $task->task }}</td>
                         <td>{{ $task->task_descripton }}</td>
-                        <td style="text-align: center;vertical-align: middle">{{ $task->due_date }}</td>
+                        <td>{{ date('d-m-Y', strtotime($task->due_date)) }}</td>
                         <td>
                             <form action="{{ route('update.status') }}" method="post">
                                 <ul>

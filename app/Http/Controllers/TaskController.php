@@ -11,11 +11,14 @@ class TaskController extends Controller
 
     public function index()
     {
-        // Fetches tasks from the "Task" model along with their related "steps." in step model
-        $tasks = Task::with('steps')->latest()->paginate(3);
+        // Fetches tasks from the "Task" model along with their related "steps" only for the authenticated user
+        $tasks = Task::with('steps', 'user')
+            ->where('user_id', auth()->id()) // Filter tasks for the currently logged-in user
+            ->latest()
+            ->paginate(3);
+    
         return view('user.taskindex', compact('tasks'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-
     }
 
     public function create()

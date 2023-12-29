@@ -59,6 +59,12 @@
                             <textarea class="form-control" style="height:150px" name="step_descripton" required>{{ implode(', ', $task->steps->pluck('step_descripton')->toArray()) }}</textarea>
                         </div>
                     </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 ">
+                        <div class="form-group">
+                            <label for="due_date"><strong>Due Date:</strong></label>
+                            <input type="date" id="due_date" name="due_date" class="form-control" value="{{ date('Y-m-d', strtotime($task->due_date)) }}" required>
+                        </div>
+                    </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button type="submit" class="btn btn-outline-success">Update</button>
                     </div>

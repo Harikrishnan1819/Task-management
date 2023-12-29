@@ -13,8 +13,6 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-
-        <!-- End of Main Content -->
         <div class="container">
             @if ($message = Session::get('success'))
                 <div class="alert alert-success">
@@ -25,9 +23,8 @@
                 <tr>
                     <th>S.No</th>
                     <th>Users</th>
-                    <th>Tittle</th>
-                    <th>Status</th>
-                </tr>
+                    <th>Task Tittle</th>
+               </tr>
 
                 @foreach ($users as $user)
                     <tr>
@@ -44,15 +41,13 @@
                         <td>
                             @foreach ($user->tasks as $task)
                                 {{ $task->task }}
-                                @if (!$loop->last)
-                                    <br>
-                                @endif
                             @endforeach
                         </td>
                     </tr>
                 @endforeach
             </table>
         </div>
+        <!-- End of Main Content -->
         <!-- Footer -->
         @include('admin.footer')
 </body>
