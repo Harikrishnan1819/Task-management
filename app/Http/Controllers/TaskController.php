@@ -16,9 +16,8 @@ class TaskController extends Controller
             ->where('user_id', auth()->id()) // Filter tasks for the currently logged-in user
             ->latest()
             ->paginate(3);
-    
-        return view('user.taskindex', compact('tasks'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        return view('user.taskindex', compact('tasks'));
     }
 
     public function create()

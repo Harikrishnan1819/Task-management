@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 Route::get('/home', [Authcontroller::class, 'register'])->middleware(['auth'])->name('home');
-Route::get('/admin/userlist', [AdminController::class, 'index'])->middleware(['auth'])->name('admin.userlist');
+Route::get('/admin/userlist', [AdminController::class, 'index'])->name('admin.userlist');
 
 Route::get('/task/index', [TaskController::class, 'index'])->middleware('auth')->name('task.index');
 Route::get('/task/create', [TaskController::class, 'create'])->middleware('auth')->name('task.create');

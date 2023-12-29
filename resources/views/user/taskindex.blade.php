@@ -39,7 +39,7 @@
                 </tr>
                 @foreach ($tasks as $task)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $task->task }}</td>
                         <td>{{ $task->task_descripton }}</td>
                         <td>{{ date('d-m-Y', strtotime($task->due_date)) }}</td>
